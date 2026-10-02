@@ -30,7 +30,7 @@ export function PasswordField({
           className={cn(
             "flex h-11 w-full rounded-xl border bg-white py-2 pl-3.5 pr-11 text-sm text-primary placeholder:text-grey",
             "border-border focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20",
-            error && "border-red-500 focus-visible:ring-red-200",
+            error && "border-error focus-visible:ring-error/20",
             className,
           )}
           aria-invalid={Boolean(error)}
@@ -47,7 +47,7 @@ export function PasswordField({
         </button>
       </div>
       {error ? (
-        <p id={`${id}-error`} className="text-xs text-red-600" role="alert">
+        <p id={`${id}-error`} className="text-xs text-error" role="alert">
           {error}
         </p>
       ) : null}

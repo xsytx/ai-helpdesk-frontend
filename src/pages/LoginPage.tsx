@@ -19,7 +19,7 @@ export function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState<string>();
-  const [formError, setFormError] = useState<string>();
+  const [passwordError, setPasswordError] = useState<string>();
   const [loading, setLoading] = useState(false);
 
   if (isAuthenticated) {
@@ -28,15 +28,15 @@ export function LoginPage() {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setFormError(undefined);
+    setPasswordError(undefined);
     setEmailError(undefined);
 
     if (!isUniversityEmail(email)) {
-      setEmailError(t("invalidEmail"));
+      setEmailError(t("corporateEmail"));
       return;
     }
     if (password.length < 6) {
-      setFormError(t("invalidCredentials"));
+      setPasswordError(t("invalidCredentials"));
       return;
     }
 
@@ -47,7 +47,7 @@ export function LoginPage() {
       login(toUser(account), "demo-jwt-token");
       navigate("/");
     } catch {
-      setFormError(t("invalidCredentials"));
+      setPasswordError(t("invalidCredentials"));
     } finally {
       setLoading(false);
     }
@@ -77,13 +77,8 @@ export function LoginPage() {
           placeholder={t("passwordPlaceholder")}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          error={passwordError}
         />
-
-        {formError ? (
-          <p className="text-sm text-red-600" role="alert">
-            {formError}
-          </p>
-        ) : null}
 
         <div className="flex justify-end">
           <Link to="/forgot-password" className="text-sm font-medium text-primary-light hover:underline">

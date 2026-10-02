@@ -66,9 +66,8 @@ export function VerifyCodePage() {
         return;
       }
       navigate("/reset-password", { state: { email: verified.email, verified: true } });
-    } catch (err) {
-      const reason = err instanceof Error ? err.message : "";
-      setError(reason === "expired" ? t("codeExpired") : t("codeInvalid"));
+    } catch {
+      setError(t("wrongCode"));
     } finally {
       setLoading(false);
     }
@@ -101,7 +100,7 @@ export function VerifyCodePage() {
       <form className="space-y-5" onSubmit={handleSubmit}>
         <OtpInput value={code} onChange={setCode} error={Boolean(error)} />
         {error ? (
-          <p className="text-center text-sm text-red-600" role="alert">
+          <p className="text-center text-xs text-error" role="alert">
             {error}
           </p>
         ) : null}

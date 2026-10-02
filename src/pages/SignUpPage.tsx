@@ -35,19 +35,19 @@ export function SignUpPage() {
     setFormError(undefined);
 
     let invalid = false;
-    if (username.trim().length < 3) {
-      setUsernameError(t("usernameTooShort"));
+    if (!username.trim()) {
+      setUsernameError(t("createUsername"));
       invalid = true;
     }
     if (!isUniversityEmail(email)) {
-      setEmailError(t("invalidEmail"));
+      setEmailError(t("corporateEmail"));
       invalid = true;
     } else if (accountExists(email)) {
       setEmailError(t("emailAlreadyUsed"));
       invalid = true;
     }
-    if (password.length < 6) {
-      setPasswordError(t("passwordTooShort"));
+    if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9\s]).{8,}$/.test(password)) {
+      setPasswordError(t("passwordRequirements"));
       invalid = true;
     }
     if (invalid) return;
@@ -102,7 +102,7 @@ export function SignUpPage() {
           error={passwordError}
         />
         {formError ? (
-          <p className="text-sm text-red-600" role="alert">
+          <p className="text-sm text-error" role="alert">
             {formError}
           </p>
         ) : null}

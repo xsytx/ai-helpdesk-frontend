@@ -28,6 +28,8 @@ export function ResetPasswordPage() {
     return <Navigate to="/forgot-password" replace />;
   }
 
+  const email = state.email;
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setPasswordError(undefined);
@@ -43,7 +45,7 @@ export function ResetPasswordPage() {
     setLoading(true);
     try {
       await delay();
-      updatePassword(state.email!, password);
+      updatePassword(email, password);
       clearPending();
       navigate("/login", { state: { notice: t("passwordUpdated") } });
     } finally {

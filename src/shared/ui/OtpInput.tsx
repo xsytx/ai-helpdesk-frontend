@@ -73,7 +73,7 @@ export function OtpInput({
           className={cn(
             "h-12 w-10 rounded-lg border bg-white text-center text-lg font-semibold text-primary sm:h-14 sm:w-11",
             "border-border focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20",
-            error && "border-red-500",
+            error && "border-error",
           )}
         />
       ))}
