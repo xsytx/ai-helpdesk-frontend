@@ -1,0 +1,7 @@
+{
+  // Tailwind CSS v4 defines at-rules (e.g. @theme) that the built-in VS Code
+  // CSS language server does not recognize. Tailwind's @tailwindcss/vite plugin
+  // handles them at build time, so these "unknown at-rule" squiggles are
+  // false positives. Ignore them project-wide.
+  "css.lint.unknownAtRules": "ignore"
+}
